@@ -1,6 +1,6 @@
 import { Box, Heading, useBreakpointValue, useColorMode } from "@chakra-ui/react";
 
-const SomeText = () => {
+export const SomeText = () => {
     const { colorMode } = useColorMode();
     const textSize = useBreakpointValue({
         base: "xs",
@@ -25,5 +25,3 @@ const SomeText = () => {
         </>
     );
 };
-
-export default SomeText;

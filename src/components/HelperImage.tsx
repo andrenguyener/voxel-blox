@@ -7,7 +7,7 @@ type HelperImageProps = {
     src: string;
 };
 
-const HelperImage = ({ label, src }: HelperImageProps) => {
+export const HelperImage = ({ label, src }: HelperImageProps) => {
     return (
         <Tooltip hasArrow aria-label={label} label={label} placement="auto-end">
             <Box marginX={2}>
@@ -20,5 +20,3 @@ const HelperImage = ({ label, src }: HelperImageProps) => {
 HelperImage.defaultProps = {
     label: "",
 };
-
-export default HelperImage;

@@ -2,10 +2,10 @@ import Image from "next/image";
 
 import { Flex, Link, Text, useColorMode } from "@chakra-ui/react";
 
-import HelperImage from "./HelperImage";
+import { HelperImage } from "./HelperImage";
 import MotionBox from "./motion/Box";
 
-const SomeImage = () => {
+export const SomeImage = () => {
     const { colorMode } = useColorMode();
 
     return (
@@ -38,5 +38,3 @@ const SomeImage = () => {
         </>
     );
 };
-
-export default SomeImage;
