@@ -1,6 +1,5 @@
 {
     "root": true,
-    // "extends": ["plugin:react/jsx-runtime", "plugin:@next/next/recommended"],
     "plugins": ["import", "@typescript-eslint", "react-hooks"],
     "extends": [
         "plugin:react/jsx-runtime",
@@ -21,6 +20,11 @@
                 "pathGroups": [
                     {
                         "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    },
+                    {
+                        "pattern": "next/*",
                         "group": "external",
                         "position": "before"
                     }

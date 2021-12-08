@@ -1,8 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import createEmotionServer from "@emotion/server/create-instance";
-import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
 import * as React from "react";
-import createEmotionCache from "styles/createEmotionCache";
+
+import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
+
+import createEmotionServer from "@emotion/server/create-instance";
+
+import createEmotionCache from "../styles/createEmotionCache";
 
 const APP_NAME = "voxel-blocks";
 
