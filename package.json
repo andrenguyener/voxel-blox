@@ -30,16 +30,17 @@
         "react-icons": "^4.3.1"
     },
     "devDependencies": {
+        "@netlify/plugin-nextjs": "^1.0.2",
         "@commitlint/config-conventional": "^14.1.0",
         "@types/react": "^17.0.37",
         "@typescript-eslint/eslint-plugin": "^4.32.0",
         "@typescript-eslint/parser": "^4.32.0",
+        "commitlint": "^14.1.0",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.25.3",
         "eslint-plugin-react-hooks": "^4.3.0",
         "eslint-config-next": "^12.0.4",
-        "commitlint": "^14.1.0",
         "husky": "^7.0.4",
         "lint-staged": "^12.1.2",
         "prettier": "^2.5.0",
