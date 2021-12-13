@@ -2,9 +2,10 @@ import * as React from "react";
 
 import Document, { Html, Head, Main, NextScript, DocumentContext } from "next/document";
 
+import { ColorModeScript } from "@chakra-ui/react";
 import createEmotionServer from "@emotion/server/create-instance";
 
-import createEmotionCache from "../styles/createEmotionCache";
+import { config, createEmotionCache } from "../styles";
 
 const APP_NAME = "voxel-blocks";
 
@@ -61,6 +62,7 @@ class MyDocument extends Document {
                     <link rel="manifest" href="/manifest.json" />
                 </Head>
                 <body>
+                    <ColorModeScript initialColorMode={config.initialColorMode} />
                     <Main />
                     <NextScript />
                 </body>

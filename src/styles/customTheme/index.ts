@@ -1,15 +1,19 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 
-import colors from "./colors";
-import Button from "./components/button";
-import fonts from "./fonts";
+import { colors } from "./colors";
+import { Button } from "./components";
+import { fonts } from "./fonts";
 
-const customTheme = extendTheme({
+export const config: ThemeConfig = {
+    initialColorMode: "dark",
+    useSystemColorMode: true,
+};
+
+export const customTheme = extendTheme({
+    config,
     fonts,
     colors,
     components: {
         Button,
     },
 });
-
-export default customTheme;

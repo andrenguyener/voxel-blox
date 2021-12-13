@@ -7,8 +7,7 @@ import { CacheProvider } from "@emotion/react";
 import "@fontsource/lexend/latin.css";
 
 import Layout from "../components/layout";
-import createEmotionCache from "../styles/createEmotionCache";
-import customTheme from "../styles/customTheme";
+import { customTheme, createEmotionCache } from "../styles";
 import "../styles/globals.css";
 
 const clientSideEmotionCache = createEmotionCache();
@@ -33,10 +32,6 @@ const MyApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
             </ChakraProvider>
         </CacheProvider>
     );
-};
-
-MyApp.defaultProps = {
-    emotionCache: clientSideEmotionCache,
 };
 
 export default MyApp;

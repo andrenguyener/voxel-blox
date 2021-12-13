@@ -10,7 +10,7 @@ import {
     useColorMode,
 } from "@chakra-ui/react";
 
-import MotionBox from "../components/motion/Box";
+import { MotionBox } from "../components/motion/Box";
 
 const Page404 = () => {
     const { colorMode } = useColorMode();
