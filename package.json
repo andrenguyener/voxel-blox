@@ -27,7 +27,7 @@
         "@types/three": "^0.135.0",
         "framer-motion": "^4.1.17",
         "leva": "^0.9.18",
-        "next": "^12.0.4",
+        "next": "^12.0.7",
         "next-transpile-modules": "^4.1.0",
         "polished": "^4.1.3",
         "react": "^17.0.2",
