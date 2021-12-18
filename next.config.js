@@ -14,11 +14,11 @@ const test = withTM({
 
         //     include: [/(three|drei)$/, /(three|drei)[\\/](?!.*node_modules)/],
         // }),
-        console.warn("config", config.module.rules);
+        // console.warn("config", config.module.rules);
         return config;
         // Target must be serverless
-        // target: "serverless",
     },
+    target: "serverless",
 });
 
 module.exports = test;
