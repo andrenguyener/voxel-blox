@@ -1427,7 +1427,7 @@
     utility-types "^3.10.0"
     zustand "^3.5.13"
 
-"@react-three/fiber@latest":
+"@react-three/fiber@^7.0.24", "@react-three/fiber@latest":
   version "7.0.24"
   resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-7.0.24.tgz#f3a40326e233e4a1c95b3bb5384ff19c81412958"
   integrity sha512-CJi1Mex7jqByTEVZoUzg0xZEw63CUjm4bUDx0XIhuAmNUsmFmht7cRt87zUQSSDQvmaDqvoDWW7dD+uFJW/kUQ==

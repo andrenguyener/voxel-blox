@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
 import { Html } from "@react-three/drei";
-import { useFrame, useLoader } from "react-three-fiber";
+import { useFrame, useLoader } from "@react-three/fiber";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 

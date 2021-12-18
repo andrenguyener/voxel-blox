@@ -2,9 +2,9 @@ import { Suspense } from "react";
 
 import { useColorMode, Box, Flex } from "@chakra-ui/react";
 import { OrbitControls } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Grid, EffectComposer } from "@react-three/postprocessing";
 import { useControls } from "leva";
-import { Canvas, useThree } from "react-three-fiber";
 
 import ThemeToggle from "../components/layout/ThemeToggle";
 import { Lights } from "../components/Lights";
