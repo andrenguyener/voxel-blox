@@ -3,4 +3,4 @@
   publish   = ".next
 
 [functions]
-  included_files = [".next/*.json"]
+  included_files = ["next/*.json"]
