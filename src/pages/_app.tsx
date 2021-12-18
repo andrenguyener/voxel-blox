@@ -6,7 +6,7 @@ import { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import "@fontsource/lexend/latin.css";
 
-import Layout from "../components/layout";
+// import Layout from "../components/layout";
 import { customTheme, createEmotionCache } from "../styles";
 import "../styles/globals.css";
 
@@ -26,9 +26,9 @@ const MyApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
                         content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
                     />
                 </Head>
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
+                {/* <Layout> */}
+                <Component {...pageProps} />
+                {/* </Layout> */}
             </ChakraProvider>
         </CacheProvider>
     );
