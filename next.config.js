@@ -17,8 +17,8 @@ const test = withTM({
         // console.warn("config", config.module.rules);
         return config;
         // Target must be serverless
+        // target: "serverless",
     },
-    target: "serverless",
 });
 
 module.exports = test;
