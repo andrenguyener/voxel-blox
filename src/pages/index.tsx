@@ -1,40 +1,77 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 
-import { useColorMode, Box, Flex } from "@chakra-ui/react";
+import { useColorMode, Box } from "@chakra-ui/react";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
-import { Grid, EffectComposer } from "@react-three/postprocessing";
-import { useControls } from "leva";
+import { useControls, Leva } from "leva";
 
-import ThemeToggle from "../components/layout/ThemeToggle";
 import { Lights } from "../components/Lights";
 import { Model } from "../components/Model";
 
 const SetCamera = () => {
+    const [initialLoaded, setInitialLoaded] = React.useState(false);
+
+    React.useEffect(() => {
+        setInitialLoaded(true);
+    }, []);
+
     useThree(({ camera }) => {
-        // camera.rotation.set(deg2rad(30), 0, 0);
-        camera.position.y = 5;
-        camera.position.x = 15 * Math.sin(0.2 * Math.PI);
-        camera.position.z = 15 * Math.cos(0.2 * Math.PI);
+        if (!initialLoaded) {
+            camera.position.y = 5;
+            camera.position.x = 15 * Math.sin(0.2 * Math.PI);
+            camera.position.z = 15 * Math.cos(0.2 * Math.PI);
+            camera.manual = true;
+        }
     });
     return null;
 };
 
+const MODELS = {
+    shadow: {
+        mtl: "shadow/heartless-3.vox-0-heartless-2.mtl",
+        obj: "shadow/heartless-3.vox-0-heartless-2.obj",
+    },
+    vivi: {
+        mtl: "vivi/vivi.vox-0-vivi-chibi.mtl",
+        obj: "vivi/vivi.vox-0-vivi-chibi.obj",
+    },
+};
+
 const Home = () => {
-    const { colorMode } = useColorMode();
-    const { scale } = useControls({
-        scale: {
-            min: 0.1,
-            max: 4,
-            value: 0.5,
+    const { colorMode, setColorMode } = useColorMode();
+    const { model, rotate } = useControls({
+        darkTheme: {
+            value: colorMode === "dark" ? true : false,
+            onChange: (val) => {
+                setColorMode(val === true ? "dark" : "light");
+            },
         },
+        model: {
+            value: Object.keys(MODELS)[0] as keyof typeof MODELS,
+            options: [...Object.keys(MODELS)] as Array<keyof typeof MODELS>,
+        },
+
+        rotate: false,
     });
+    const lighting = useControls(
+        "Lighting",
+        {
+            castShadow: true,
+            color: "#FFF",
+            intensity: {
+                min: 0,
+                max: 20,
+                value: 0.4,
+            },
+        },
+        {
+            collapsed: true,
+        }
+    );
+
     return (
         <>
             <Box height={"100vh"} width={"100vw"} transition="0.5s ease-out" overflow={"hidden"}>
-                <Flex as="header" width="full" align="center" justify={"flex-end"}>
-                    <ThemeToggle />
-                </Flex>
                 <Canvas shadows={true}>
                     <Suspense fallback={null}>
                         <SetCamera />
@@ -48,28 +85,43 @@ const Home = () => {
 
                         <Lights
                             ambientLight={{
-                                color: "#FFF",
-                                intensity: 0.4,
+                                color: lighting.color,
+                                intensity: lighting.intensity,
                             }}
                             directionalLight={{
-                                castShadow: true,
+                                castShadow: lighting.castShadow,
                                 intensity: 1.3,
-                                // position: [300 * 1.5, 400 * 1.5, 500 * 1.5],
                                 position: [10, 30, 10],
                                 shadowRadius: 100,
                             }}
                         />
                         <OrbitControls />
                         <Model
-                            mtlPath="shadow/heartless-3.vox-0-heartless-2.mtl"
-                            objPath="shadow/heartless-3.vox-0-heartless-2.obj"
-                            // rotate={true}
+                            mtlPath={MODELS[model].mtl}
+                            objPath={MODELS[model].obj}
+                            rotate={rotate}
                         />
-                        <EffectComposer>
-                            <Grid scale={scale} />
-                        </EffectComposer>
+                        {/* <EffectComposer> */}
+                        {/* <Grid scale={scale} /> */}
+                        {/* <Bloom
+                                luminanceThreshold={0.5}
+                                luminanceSmoothing={0.4}
+                                // height={1000}
+                                opacity={0.5}
+                                intensity={0.75}
+                            /> */}
+                        {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
+                        {/* </EffectComposer> */}
                     </Suspense>
                 </Canvas>
+                <Leva
+                    flat={true}
+                    titleBar={{
+                        drag: false,
+                        filter: false,
+                        title: "Controls",
+                    }}
+                />
             </Box>
         </>
     );
