@@ -33,7 +33,6 @@ export const Lights = (props: Props) => {
                 shadow-camera-top={d}
                 shadow-camera-bottom={-d}
             />
-            {/* <directionalLight position={[0, 500, 1000]} intensity={0.5} /> */}
         </>
     );
 };

@@ -15,11 +15,12 @@ const SetCamera = () => {
         setInitialLoaded(true);
     }, []);
 
-    useThree(({ camera }) => {
+    useThree(({ camera, scene }) => {
         if (!initialLoaded) {
-            camera.position.y = 5;
-            camera.position.x = 15 * Math.sin(0.2 * Math.PI);
-            camera.position.z = 15 * Math.cos(0.2 * Math.PI);
+            scene.position.y = -3;
+            camera.position.y = 2;
+            camera.position.x = 9;
+            camera.position.z = 9;
             camera.manual = true;
         }
     });
@@ -39,7 +40,7 @@ const MODELS = {
 
 const Home = () => {
     const { colorMode, setColorMode } = useColorMode();
-    const { model, rotate } = useControls({
+    const { model, rotate, debug } = useControls({
         darkTheme: {
             value: colorMode === "dark" ? true : false,
             onChange: (val) => {
@@ -50,7 +51,7 @@ const Home = () => {
             value: Object.keys(MODELS)[0] as keyof typeof MODELS,
             options: [...Object.keys(MODELS)] as Array<keyof typeof MODELS>,
         },
-
+        debug: false,
         rotate: false,
     });
     const lighting = useControls(
@@ -95,12 +96,26 @@ const Home = () => {
                                 shadowRadius: 100,
                             }}
                         />
-                        <OrbitControls />
-                        <Model
-                            mtlPath={MODELS[model].mtl}
-                            objPath={MODELS[model].obj}
-                            rotate={rotate}
-                        />
+                        {debug && (
+                            <>
+                                <gridHelper
+                                    args={[10, 10, 0x006600, 0x006600]}
+                                    position={[0, 0, 0]}
+                                />
+                                <gridHelper
+                                    args={[10, 10, 0x000066, 0x000066]}
+                                    position={[0, 5, -5]}
+                                    rotation={[Math.PI / 2, 0, 0]}
+                                />
+                                <gridHelper
+                                    args={[10, 10, 0x660000, 0x660000]}
+                                    position={[-5, 5, 0]}
+                                    rotation={[0, 0, Math.PI / 2]}
+                                />
+                            </>
+                        )}
+                        <OrbitControls autoRotate={rotate} />
+                        <Model mtlPath={MODELS[model].mtl} objPath={MODELS[model].obj} />
                         {/* <EffectComposer> */}
                         {/* <Grid scale={scale} /> */}
                         {/* <Bloom
