@@ -40,7 +40,7 @@ const MODELS = {
 
 const Home = () => {
     const { colorMode, setColorMode } = useColorMode();
-    const { model, rotate, debug } = useControls({
+    const { model, rotate } = useControls({
         darkTheme: {
             value: colorMode === "dark" ? true : false,
             onChange: (val) => {
@@ -51,7 +51,6 @@ const Home = () => {
             value: Object.keys(MODELS)[0] as keyof typeof MODELS,
             options: [...Object.keys(MODELS)] as Array<keyof typeof MODELS>,
         },
-        debug: false,
         rotate: false,
     });
     const lighting = useControls(
@@ -61,9 +60,19 @@ const Home = () => {
             color: "#FFF",
             intensity: {
                 min: 0,
-                max: 20,
+                max: 1,
                 value: 0.4,
             },
+        },
+        {
+            collapsed: true,
+        }
+    );
+    const debug = useControls(
+        "Debug",
+        {
+            grid: false,
+            wireframe: false,
         },
         {
             collapsed: true,
@@ -96,7 +105,7 @@ const Home = () => {
                                 shadowRadius: 100,
                             }}
                         />
-                        {debug && (
+                        {debug.grid && (
                             <>
                                 <gridHelper
                                     args={[10, 10, 0x006600, 0x006600]}
@@ -115,7 +124,13 @@ const Home = () => {
                             </>
                         )}
                         <OrbitControls autoRotate={rotate} />
-                        <Model mtlPath={MODELS[model].mtl} objPath={MODELS[model].obj} />
+                        <Model
+                            mtlPath={MODELS[model].mtl}
+                            objPath={MODELS[model].obj}
+                            options={{
+                                wireframe: debug.wireframe,
+                            }}
+                        />
                         {/* <EffectComposer> */}
                         {/* <Grid scale={scale} /> */}
                         {/* <Bloom
