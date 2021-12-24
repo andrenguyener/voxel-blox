@@ -33,6 +33,12 @@ export const Lights = (props: Props) => {
                 shadow-camera-top={d}
                 shadow-camera-bottom={-d}
             />
+            <directionalLight
+                position={
+                    directionalLight.position.map((pos) => pos * -1) as [number, number, number]
+                }
+                intensity={0.75}
+            />
         </>
     );
 };

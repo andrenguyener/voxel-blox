@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 
-import { useColorMode, Box } from "@chakra-ui/react";
-import { OrbitControls } from "@react-three/drei";
+import { useColorMode, Box, VStack, HStack, Heading, Text } from "@chakra-ui/react";
+import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from "leva";
 
@@ -16,11 +16,10 @@ const SetCamera = () => {
     }, []);
 
     useThree(({ camera, scene }) => {
+        (camera as THREE.PerspectiveCamera).aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
         if (!initialLoaded) {
-            scene.position.y = -3;
-            camera.position.y = 2;
-            camera.position.x = 9;
-            camera.position.z = 9;
+            scene.position.y = -2;
             camera.manual = true;
         }
     });
@@ -29,17 +28,18 @@ const SetCamera = () => {
 
 const MODELS = {
     shadow: {
-        mtl: "shadow/heartless-3.vox-0-heartless-2.mtl",
-        obj: "shadow/heartless-3.vox-0-heartless-2.obj",
+        mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
+        obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
     },
     vivi: {
-        mtl: "vivi/vivi.vox-0-vivi-chibi.mtl",
-        obj: "vivi/vivi.vox-0-vivi-chibi.obj",
+        mtl: "models/vivi/vivi.vox-0-vivi-chibi.mtl",
+        obj: "models/vivi/vivi.vox-0-vivi-chibi.obj",
     },
 };
 
 const Home = () => {
     const { colorMode, setColorMode } = useColorMode();
+
     const { model, rotate } = useControls({
         darkTheme: {
             value: colorMode === "dark" ? true : false,
@@ -60,8 +60,8 @@ const Home = () => {
             color: "#FFF",
             intensity: {
                 min: 0,
-                max: 1,
-                value: 0.4,
+                max: 2,
+                value: 0.25,
             },
         },
         {
@@ -80,13 +80,31 @@ const Home = () => {
     );
 
     return (
-        <>
-            <Box height={"100vh"} width={"100vw"} transition="0.5s ease-out" overflow={"hidden"}>
-                <Canvas shadows={true}>
+        <Box height={"100vh"} width={"100vw"} transition="0.5s ease-out" overflow={"hidden"}>
+            <VStack
+                // divider={<StackDivider borderColor="gray.200" />}
+                spacing={3}
+                direction="column"
+                align="stretch"
+                height={"100%"}
+            >
+                <Box w="100%" p={4} background="transparent">
+                    Voxel Blox
+                </Box>
+                <Canvas
+                    shadows={true}
+                    dpr={[1, 2]}
+                    camera={{
+                        position: [6, 2, 9],
+                        fov: 100,
+                    }}
+                >
                     <Suspense fallback={null}>
+                        <fog attach="fog" args={["#17171b", 30, 40]} />
+
                         <SetCamera />
                         <mesh receiveShadow={true} rotation={[-Math.PI / 2, 0, 0]}>
-                            <planeBufferGeometry args={[50, 50]} />
+                            <planeBufferGeometry args={[250, 250]} />
                             <shadowMaterial
                                 color={colorMode === "light" ? "#464343" : "#000"}
                                 transparent={true}
@@ -100,8 +118,8 @@ const Home = () => {
                             }}
                             directionalLight={{
                                 castShadow: lighting.castShadow,
-                                intensity: 1.3,
-                                position: [10, 30, 10],
+                                intensity: 1,
+                                position: [10, 10, 6],
                                 shadowRadius: 100,
                             }}
                         />
@@ -124,6 +142,7 @@ const Home = () => {
                             </>
                         )}
                         <OrbitControls autoRotate={rotate} />
+
                         <Model
                             mtlPath={MODELS[model].mtl}
                             objPath={MODELS[model].obj}
@@ -131,19 +150,22 @@ const Home = () => {
                                 wireframe: debug.wireframe,
                             }}
                         />
-                        {/* <EffectComposer> */}
-                        {/* <Grid scale={scale} /> */}
-                        {/* <Bloom
-                                luminanceThreshold={0.5}
-                                luminanceSmoothing={0.4}
-                                // height={1000}
-                                opacity={0.5}
-                                intensity={0.75}
-                            /> */}
-                        {/* <Vignette eskil={false} offset={0.1} darkness={1.1} /> */}
-                        {/* </EffectComposer> */}
+
+                        <Environment preset="dawn" />
                     </Suspense>
                 </Canvas>
+                <Box w="100%" height="300px" p={4}>
+                    <HStack spacing={2} justify="center">
+                        <Feature
+                            title="Plan Money"
+                            desc="The future can be even brighter but a goal without a plan is just a wish"
+                        />
+                        <Feature
+                            title="Save Money"
+                            desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
+                        />
+                    </HStack>
+                </Box>
                 <Leva
                     flat={true}
                     titleBar={{
@@ -152,8 +174,17 @@ const Home = () => {
                         title: "Controls",
                     }}
                 />
-            </Box>
-        </>
+            </VStack>
+        </Box>
+    );
+};
+
+const Feature = ({ title, desc }: { title: string; desc: string }) => {
+    return (
+        <Box p={5} shadow="md" borderWidth="1px" flex="1" borderRadius="md">
+            <Heading fontSize="xl">{title}</Heading>
+            <Text mt={4}>{desc}</Text>
+        </Box>
     );
 };
 
