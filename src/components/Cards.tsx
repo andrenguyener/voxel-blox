@@ -1,12 +1,8 @@
 import { Box, HStack, Heading, Image } from "@chakra-ui/react";
 
-interface Model {
-    mtl: string;
-    obj: string;
-    label: string;
-}
+import type { Models } from "../types";
 
-export const Cards = ({ models }: { models: Record<string, Model> }) => {
+export const Cards = ({ models }: { models: Models }) => {
     return (
         <Box
             w="100%"

@@ -6,14 +6,9 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from "leva";
 
 import { Cards, Header, Lights, Model, LoadingSpinner } from "../components";
+import type { Models } from "../types";
 
-interface Model {
-    mtl: string;
-    obj: string;
-    label: string;
-}
-
-const MODELS: Record<string, Model> = {
+const MODELS: Models = {
     shadow: {
         mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
         obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
