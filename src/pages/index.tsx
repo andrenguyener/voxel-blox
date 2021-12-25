@@ -1,12 +1,11 @@
 import React, { Suspense } from "react";
 
-import { useColorMode, Box, VStack, HStack, Heading, Text, Spinner, Fade } from "@chakra-ui/react";
+import { useColorMode, Box, VStack, Spinner, Fade } from "@chakra-ui/react";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from "leva";
 
-import { Lights } from "../components/Lights";
-import { Model } from "../components/Model";
+import { Cards, Header, Lights, Model } from "../components";
 
 const UpdateCamera = () => {
     const [initialLoaded, setInitialLoaded] = React.useState(false);
@@ -76,31 +75,6 @@ const LoadingSpinner = ({ isIn }: { isIn: boolean }) => {
                 <Spinner size="xl" />
             </Box>
         </Fade>
-    );
-};
-
-const Header = () => {
-    return (
-        <Box w="100%" p={4} background="transparent">
-            Voxel Blox
-        </Box>
-    );
-};
-
-const Cards = ({ height }: { height: string }) => {
-    return (
-        <Box w="100%" h={height} p={4}>
-            <HStack spacing={2} justify="center">
-                <Feature
-                    title="Plan Money"
-                    desc="The future can be even brighter but a goal without a plan is just a wish"
-                />
-                <Feature
-                    title="Save Money"
-                    desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
-                />
-            </HStack>
-        </Box>
     );
 };
 
@@ -236,15 +210,6 @@ const Home = () => {
                     hideCopyButton={true}
                 />
             </VStack>
-        </Box>
-    );
-};
-
-const Feature = ({ title, desc }: { title: string; desc: string }) => {
-    return (
-        <Box p={5} shadow="md" borderWidth="1px" flex="1" borderRadius="md">
-            <Heading fontSize="xl">{title}</Heading>
-            <Text mt={4}>{desc}</Text>
         </Box>
     );
 };
