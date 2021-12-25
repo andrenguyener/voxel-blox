@@ -1,27 +1,51 @@
-import { Box, HStack, Heading, Text } from "@chakra-ui/react";
+import { Box, HStack, Heading, Image } from "@chakra-ui/react";
 
-export const Cards = ({ height }: { height: string }) => {
+interface Model {
+    mtl: string;
+    obj: string;
+    label: string;
+}
+
+export const Cards = ({ models }: { models: Record<string, Model> }) => {
     return (
-        <Box w="100%" h={height} p={4}>
-            <HStack spacing={2} justify="center">
-                <Feature
-                    title="Plan Money"
-                    desc="The future can be even brighter but a goal without a plan is just a wish"
-                />
-                <Feature
-                    title="Save Money"
-                    desc="You deserve good things. With a whooping 10-15% interest rate per annum, grow your savings."
-                />
+        <Box
+            w="100%"
+            p={4}
+            zIndex={1}
+            style={{
+                position: "fixed",
+                bottom: 0,
+            }}
+        >
+            <HStack spacing={2} justify="center" align={"center"}>
+                {Object.values(models).map((model) => {
+                    return <Feature key={model.label} title={model.label} />;
+                })}
             </HStack>
         </Box>
     );
 };
 
-const Feature = ({ title, desc }: { title: string; desc: string }) => {
+const Feature = ({ title }: { title: string }) => {
     return (
-        <Box p={5} shadow="md" borderWidth="1px" flex="1" borderRadius="md">
-            <Heading fontSize="xl">{title}</Heading>
-            <Text mt={4}>{desc}</Text>
+        <Box
+            p={5}
+            w={"200px"}
+            shadow="md"
+            borderWidth="1px"
+            borderRadius="md"
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+                backdropFilter: "blur(10px)",
+                backgroundColor: "rgba(214, 213, 213, 0.048)",
+            }}
+        >
+            <Image src="https://via.placeholder.com/150" alt="Placeholder Image" />
+            <Heading fontSize="l" marginTop="10px">
+                {title}
+            </Heading>
         </Box>
     );
 };
