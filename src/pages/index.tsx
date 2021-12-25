@@ -1,11 +1,22 @@
 import React, { Suspense } from "react";
 
-import { useColorMode, Box, VStack, Spinner, Fade } from "@chakra-ui/react";
+import { useColorMode, Box, VStack, Fade } from "@chakra-ui/react";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from "leva";
 
-import { Cards, Header, Lights, Model } from "../components";
+import { Cards, Header, Lights, Model, LoadingSpinner } from "../components";
+
+const MODELS = {
+    shadow: {
+        mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
+        obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
+    },
+    vivi: {
+        mtl: "models/vivi/vivi.vox-0-vivi-chibi.mtl",
+        obj: "models/vivi/vivi.vox-0-vivi-chibi.obj",
+    },
+};
 
 const UpdateCamera = () => {
     const [initialLoaded, setInitialLoaded] = React.useState(false);
@@ -29,17 +40,6 @@ const UpdateCamera = () => {
     return null;
 };
 
-const MODELS = {
-    shadow: {
-        mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
-        obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
-    },
-    vivi: {
-        mtl: "models/vivi/vivi.vox-0-vivi-chibi.mtl",
-        obj: "models/vivi/vivi.vox-0-vivi-chibi.obj",
-    },
-};
-
 const SetLoading = ({
     setIsLoading,
 }: {
@@ -52,30 +52,6 @@ const SetLoading = ({
     }, []);
 
     return null;
-};
-
-const LoadingSpinner = ({ isIn }: { isIn: boolean }) => {
-    return (
-        <Fade
-            in={isIn}
-            transition={{
-                exit: {
-                    duration: 1,
-                },
-            }}
-        >
-            <Box
-                position="fixed"
-                w="100%"
-                h="100%"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-            >
-                <Spinner size="xl" />
-            </Box>
-        </Fade>
-    );
 };
 
 const Home = () => {
