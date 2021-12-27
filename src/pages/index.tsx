@@ -12,11 +12,15 @@ const MODELS: Models = {
     shadow: {
         mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
         obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
+        image: "models/shadow/image-300.png",
+        background: "linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)",
         label: "Shadow",
     },
     vivi: {
         mtl: "models/vivi/vivi.vox-0-vivi-chibi.mtl",
         obj: "models/vivi/vivi.vox-0-vivi-chibi.obj",
+        image: "models/vivi/image-300.png",
+        background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
         label: "Vivi",
     },
 };

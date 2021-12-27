@@ -15,14 +15,29 @@ export const Cards = ({ models }: { models: Models }) => {
         >
             <HStack spacing={2} justify="center" align={"center"}>
                 {Object.values(models).map((model) => {
-                    return <Feature key={model.label} title={model.label} />;
+                    return (
+                        <Feature
+                            key={model.label}
+                            title={model.label}
+                            imageSrc={model.image}
+                            backgroundImage={model.background}
+                        />
+                    );
                 })}
             </HStack>
         </Box>
     );
 };
 
-const Feature = ({ title }: { title: string }) => {
+const Feature = ({
+    title,
+    imageSrc,
+    backgroundImage,
+}: {
+    title: string;
+    imageSrc: string;
+    backgroundImage: string;
+}) => {
     return (
         <Box
             p={5}
@@ -38,8 +53,27 @@ const Feature = ({ title }: { title: string }) => {
                 backgroundColor: "rgba(214, 213, 213, 0.048)",
             }}
         >
-            <Image src="https://via.placeholder.com/150" alt="Placeholder Image" />
-            <Heading fontSize="l" marginTop="10px">
+            <Box
+                style={{
+                    backgroundImage,
+                }}
+                overflow={"hidden"}
+            >
+                <Image
+                    src={imageSrc}
+                    alt="Placeholder Image"
+                    style={{
+                        transform: "scale(1.3)",
+                        // transformOrigin: "50% 33%",
+                    }}
+                />
+            </Box>
+            <Heading
+                fontSize="12px"
+                letterSpacing={"1px"}
+                marginTop="10px"
+                fontFamily={"var(--chakra-fonts-mono)"}
+            >
                 {title}
             </Heading>
         </Box>
