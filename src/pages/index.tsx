@@ -1,13 +1,14 @@
 import React, { Suspense } from "react";
 
-import { useColorMode, Box, Fade } from "@chakra-ui/react";
-import { OrbitControls, Environment, Text } from "@react-three/drei";
+import { useColorMode, Box, Fade, useBreakpoint } from "@chakra-ui/react";
+import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from "leva";
 
 import { Cards, Header, Lights, Model, LoadingSpinner } from "../components";
 import type { Models } from "../types";
 
+// Todo make gradient variables
 const MODELS: Models = {
     shadow: {
         mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
@@ -22,6 +23,20 @@ const MODELS: Models = {
         image: "models/vivi/image-300.png",
         background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
         label: "Vivi",
+    },
+    shadow2: {
+        mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
+        obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
+        image: "models/shadow/image-300.png",
+        background: "linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)",
+        label: "Shadow2",
+    },
+    vivi2: {
+        mtl: "models/vivi/vivi.vox-0-vivi-chibi.mtl",
+        obj: "models/vivi/vivi.vox-0-vivi-chibi.obj",
+        image: "models/vivi/image-300.png",
+        background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
+        label: "Vivi2",
     },
 };
 
@@ -64,17 +79,16 @@ const SetLoading = ({
 const Home = () => {
     const { colorMode, setColorMode } = useColorMode();
     const [isLoading, setIsLoading] = React.useState(true);
+    const [selectedModelKey, setSelectedModelKey] = React.useState<keyof typeof MODELS>(
+        Object.keys(MODELS)[0]
+    );
 
-    const { model: modelKey, rotate } = useControls({
+    const { rotate } = useControls({
         darkTheme: {
-            value: colorMode === "dark" ? true : false,
-            onChange: (val) => {
-                setColorMode(val === true ? "dark" : "light");
+            value: colorMode === "dark",
+            onChange: (enableDark) => {
+                setColorMode(enableDark ? "dark" : "light");
             },
-        },
-        model: {
-            value: Object.keys(MODELS)[0] as keyof typeof MODELS,
-            options: [...Object.keys(MODELS)] as Array<keyof typeof MODELS>,
         },
         rotate: false,
     });
@@ -82,7 +96,7 @@ const Home = () => {
         "Lighting",
         {
             castShadow: true,
-            color: "#FFF",
+            color: "#d8d8d8",
             intensity: {
                 min: 0,
                 max: 2,
@@ -103,6 +117,12 @@ const Home = () => {
             collapsed: true,
         }
     );
+    const breakpoint = useBreakpoint();
+    const isSmallScreen = breakpoint === "sm";
+
+    if (!breakpoint) {
+        return null;
+    }
 
     return (
         <Box
@@ -115,7 +135,7 @@ const Home = () => {
             <LoadingSpinner isIn={isLoading} />
             <Header />
             <Fade
-                in={!isLoading}
+                in={!!(!isLoading && breakpoint)}
                 transition={{
                     enter: {
                         duration: 1,
@@ -144,11 +164,7 @@ const Home = () => {
                         <fog attach="fog" args={["#17171b", 30, 40]} />
                         <mesh receiveShadow={true} rotation={[-Math.PI / 2, 0, 0]}>
                             <planeBufferGeometry args={[250, 250]} />
-                            <shadowMaterial
-                                color={colorMode === "light" ? "#464343" : "#000"}
-                                opacity={0.5}
-                                transparent={true}
-                            />
+                            <shadowMaterial color={undefined} opacity={0.5} transparent={true} />
                         </mesh>
 
                         <Lights
@@ -181,18 +197,9 @@ const Home = () => {
                                 />
                             </>
                         )}
-                        <Text
-                            fontSize={0.5}
-                            color="rgba(255, 255, 255, 0.80)"
-                            position={[4.5, 2, 0]}
-                            fillOpacity={0.5}
-                            // rotation={[-Math.PI / 2, 0, 0]}
-                        >
-                            {MODELS[modelKey].label}
-                        </Text>
                         <Model
-                            mtlPath={MODELS[modelKey].mtl}
-                            objPath={MODELS[modelKey].obj}
+                            mtlPath={MODELS[selectedModelKey].mtl}
+                            objPath={MODELS[selectedModelKey].obj}
                             options={{
                                 wireframe: debug.wireframe,
                             }}
@@ -201,16 +208,21 @@ const Home = () => {
                         <Environment preset="dawn" />
                     </Suspense>
                 </Canvas>
+                <Leva
+                    flat={true}
+                    collapsed={isSmallScreen}
+                    titleBar={{
+                        drag: false,
+                        filter: false,
+                        title: "Controls",
+                    }}
+                    hideCopyButton={true}
+                />
             </Fade>
-            <Cards models={MODELS} />
-            <Leva
-                flat={true}
-                titleBar={{
-                    drag: false,
-                    filter: false,
-                    title: "Controls",
-                }}
-                hideCopyButton={true}
+            <Cards
+                models={MODELS}
+                setSelectedModel={setSelectedModelKey}
+                selectedModel={selectedModelKey}
             />
         </Box>
     );

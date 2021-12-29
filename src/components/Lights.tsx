@@ -20,6 +20,7 @@ export const Lights = (props: Props) => {
         <>
             <ambientLight intensity={ambientLight.intensity} color={ambientLight.color} />
             <directionalLight
+                color={"#c7c7c7"}
                 castShadow={directionalLight.castShadow}
                 position={directionalLight.position}
                 intensity={directionalLight.intensity}
