@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { useColorMode, Box, Fade } from "@chakra-ui/react";
+import { useColorMode, useBreakpoint, Box, Fade } from "@chakra-ui/react";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from "leva";
@@ -77,11 +77,20 @@ const SetLoading = ({
 };
 
 const Home = () => {
+    const breakpoint = useBreakpoint();
     const { colorMode, setColorMode } = useColorMode();
     const [isLoading, setIsLoading] = React.useState(true);
+    const [isCollapsed, setIsCollapsed] = React.useState<null | boolean>(null);
     const [selectedModelKey, setSelectedModelKey] = React.useState<keyof typeof MODELS>(
         Object.keys(MODELS)[0]
     );
+
+    React.useEffect(() => {
+        if (isCollapsed === null && breakpoint) {
+            const initial = breakpoint === "sm" || breakpoint === "base";
+            setIsCollapsed(initial);
+        }
+    }, [breakpoint]);
 
     const { rotate } = useControls({
         darkTheme: {
@@ -210,6 +219,12 @@ const Home = () => {
                         title: "Controls",
                     }}
                     hideCopyButton={true}
+                    collapsed={{
+                        collapsed: !!isCollapsed,
+                        onChange: (val) => {
+                            setIsCollapsed(val);
+                        },
+                    }}
                 />
             </Fade>
             <Cards

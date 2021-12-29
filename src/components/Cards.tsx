@@ -7,8 +7,8 @@ import { AnimatePresence } from "framer-motion";
 import type { Models } from "../types";
 import { MotionBox } from "./motion";
 
-const CARD_HEIGHT = 225;
-const CARD_WIDTH = 200;
+const CARD_HEIGHT = 175;
+const CARD_WIDTH = 150;
 
 export const Cards = ({
     models,
@@ -62,7 +62,7 @@ export const Cards = ({
                 variants={{
                     expand: (shouldExpand: boolean) => {
                         return {
-                            height: shouldExpand ? "auto" : "250px",
+                            height: shouldExpand ? "auto" : CARD_HEIGHT + 25,
                         };
                     },
                 }}
@@ -79,7 +79,7 @@ export const Cards = ({
                             return (
                                 <MotionBox
                                     key={model.label}
-                                    p={5}
+                                    p={4}
                                     w={CARD_WIDTH}
                                     h={CARD_HEIGHT}
                                     shadow="md"
@@ -109,6 +109,9 @@ export const Cards = ({
                                     animate="enter"
                                     transition={{
                                         opacity: { duration: 0.2 },
+                                    }}
+                                    whileHover={{
+                                        scale: 1.05,
                                     }}
                                     onClick={() => {
                                         setSelectedModel(Object.keys(models)[index]);
