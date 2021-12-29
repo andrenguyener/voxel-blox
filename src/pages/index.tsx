@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { useColorMode, Box, Fade, useBreakpoint } from "@chakra-ui/react";
+import { useColorMode, Box, Fade } from "@chakra-ui/react";
 import { OrbitControls, Environment } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useControls, Leva } from "leva";
@@ -117,12 +117,6 @@ const Home = () => {
             collapsed: true,
         }
     );
-    const breakpoint = useBreakpoint();
-    const isSmallScreen = breakpoint === "sm";
-
-    if (!breakpoint) {
-        return null;
-    }
 
     return (
         <Box
@@ -135,7 +129,7 @@ const Home = () => {
             <LoadingSpinner isIn={isLoading} />
             <Header />
             <Fade
-                in={!!(!isLoading && breakpoint)}
+                in={!isLoading}
                 transition={{
                     enter: {
                         duration: 1,
@@ -210,7 +204,6 @@ const Home = () => {
                 </Canvas>
                 <Leva
                     flat={true}
-                    collapsed={isSmallScreen}
                     titleBar={{
                         drag: false,
                         filter: false,
