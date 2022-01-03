@@ -109,7 +109,7 @@ const Home = () => {
             intensity: {
                 min: 0,
                 max: 2,
-                value: 0.25,
+                value: 0.5,
             },
         },
         {
@@ -229,8 +229,8 @@ const Home = () => {
             </Fade>
             <Cards
                 models={MODELS}
-                setSelectedModel={setSelectedModelKey}
-                selectedModel={selectedModelKey}
+                setSelectedModelKey={setSelectedModelKey}
+                selectedModelKey={selectedModelKey}
             />
         </Box>
     );

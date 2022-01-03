@@ -12,12 +12,12 @@ const CARD_WIDTH = 150;
 
 export const Cards = ({
     models,
-    selectedModel,
-    setSelectedModel,
+    selectedModelKey,
+    setSelectedModelKey,
 }: {
     models: Models;
-    selectedModel: string;
-    setSelectedModel: React.Dispatch<React.SetStateAction<string>>;
+    selectedModelKey: string;
+    setSelectedModelKey: React.Dispatch<React.SetStateAction<string>>;
 }) => {
     const [expandOverlay, setExpandOverlay] = React.useState(false);
     const [displayExpandToggle, setDisplayExpandToggle] = React.useState(false);
@@ -33,7 +33,9 @@ export const Cards = ({
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const selectedIndex = Object.keys(models).findIndex((modelKey) => modelKey === selectedModel);
+    const selectedIndex = Object.keys(models).findIndex(
+        (modelKey) => modelKey === selectedModelKey
+    );
     const overlayBg = useColorModeValue("blackAlpha.900", "blackAlpha.800");
     return (
         <>
@@ -114,7 +116,7 @@ export const Cards = ({
                                         scale: 1.05,
                                     }}
                                     onClick={() => {
-                                        setSelectedModel(Object.keys(models)[index]);
+                                        setSelectedModelKey(Object.keys(models)[index]);
                                         setExpandOverlay(false);
                                     }}
                                 >
