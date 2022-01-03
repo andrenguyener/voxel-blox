@@ -15,8 +15,8 @@
         "release": "standard-version",
         "push-release": "git push --follow-tags origin main",
         "prepare": "husky install",
-        "encrypt": "npx cryptify encrypt $MODEL_LIST -p $SECRET_KEY",
-        "decrypt": "npx cryptify decrypt $MODEL_LIST -p $SECRET_KEY"
+        "encrypt": "npx cryptify encrypt ./public/models/shadow/heartless-3.vox-0-heartless-2.mtl ./public/models/shadow/heartless-3.vox-0-heartless-2.obj ./public/models/vivi/vivi.vox-0-vivi-chibi.mtl ./public/models/vivi/vivi.vox-0-vivi-chibi.obj -p $SECRET_KEY",
+        "decrypt": "npx cryptify decrypt ./public/models/shadow/heartless-3.vox-0-heartless-2.mtl ./public/models/shadow/heartless-3.vox-0-heartless-2.obj ./public/models/vivi/vivi.vox-0-vivi-chibi.mtl ./public/models/vivi/vivi.vox-0-vivi-chibi.obj -p $SECRET_KEY"
     },
     "dependencies": {
         "@chakra-ui/icons": "^1.1.1",
