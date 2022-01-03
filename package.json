@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
+        "build:production": "yarn decrypt && next build",
         "start": "next start",
         "lint": "next lint",
         "lint:fix": "eslint src --fix && yarn format",
@@ -13,7 +14,9 @@
         "up-latest": "yarn upgrade-interactive --latest",
         "release": "standard-version",
         "push-release": "git push --follow-tags origin main",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "encrypt": "npx cryptify encrypt ./public/models/test/heartless-3.vox-0-heartless-2.mtl ./public/models/test/heartless-3.vox-0-heartless-2.obj -p $SECRET_KEY",
+        "decrypt": "npx cryptify decrypt ./public/models/test/heartless-3.vox-0-heartless-2.mtl ./public/models/test/heartless-3.vox-0-heartless-2.obj -p $SECRET_KEY"
     },
     "dependencies": {
         "@chakra-ui/icons": "^1.1.1",
@@ -44,6 +47,7 @@
         "@typescript-eslint/eslint-plugin": "^4.32.0",
         "@typescript-eslint/parser": "^4.32.0",
         "commitlint": "^14.1.0",
+        "cryptify": "^4.1.2",
         "eslint": "^7.32.0",
         "eslint-config-next": "^12.0.4",
         "eslint-config-prettier": "^8.3.0",

@@ -2422,6 +2422,11 @@ commander@^2.20.3:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
+commander@^5.0.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
+  integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
+
 commander@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
@@ -2747,6 +2752,13 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
+
+cryptify@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/cryptify/-/cryptify-4.1.2.tgz#b26cf4f55283c2a726452ab48499e46b0beb1774"
+  integrity sha512-+fF5aEEvWl//B5dDPyI6GaJssBRXq5yu6EaOqzIKsX/B4dFJJJt9o71MiptEA1TYkhE8/yFnzIVCsTEggJhTFA==
+  dependencies:
+    commander "^5.0.0"
 
 crypto-browserify@3.12.0:
   version "3.12.0"

@@ -25,9 +25,9 @@ const MODELS: Models = {
         label: "Vivi",
     },
     shadow2: {
-        mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
-        obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
-        image: "models/shadow/image-300.png",
+        mtl: "models/test/heartless-3.vox-0-heartless-2.mtl",
+        obj: "models/test/heartless-3.vox-0-heartless-2.obj",
+        image: "models/test/image-300.png",
         background: "linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)",
         label: "Shadow2",
     },
