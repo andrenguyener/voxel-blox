@@ -64,7 +64,7 @@ export const Cards = ({
                 variants={{
                     expand: (shouldExpand: boolean) => {
                         return {
-                            height: shouldExpand ? "auto" : CARD_HEIGHT + 25,
+                            height: shouldExpand ? "auto" : CARD_HEIGHT + 35,
                         };
                     },
                 }}

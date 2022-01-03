@@ -11,29 +11,29 @@ import type { Models } from "../types";
 // Todo make gradient variables
 const MODELS: Models = {
     shadow: {
-        mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
-        obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
+        mtl: "models/shadow/shadow.mtl",
+        obj: "models/shadow/shadow.obj",
         image: "models/shadow/image-300.png",
         background: "linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)",
         label: "Shadow",
     },
     vivi: {
-        mtl: "models/vivi/vivi.vox-0-vivi-chibi.mtl",
-        obj: "models/vivi/vivi.vox-0-vivi-chibi.obj",
+        mtl: "models/vivi/vivi.mtl",
+        obj: "models/vivi/vivi.obj",
         image: "models/vivi/image-300.png",
         background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
         label: "Vivi",
     },
     shadow2: {
-        mtl: "models/shadow/heartless-3.vox-0-heartless-2.mtl",
-        obj: "models/shadow/heartless-3.vox-0-heartless-2.obj",
+        mtl: "models/shadow/shadow.mtl",
+        obj: "models/shadow/shadow.obj",
         image: "models/shadow/image-300.png",
         background: "linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)",
         label: "Shadow2",
     },
     vivi2: {
-        mtl: "models/vivi/vivi.vox-0-vivi-chibi.mtl",
-        obj: "models/vivi/vivi.vox-0-vivi-chibi.obj",
+        mtl: "models/vivi/vivi.mtl",
+        obj: "models/vivi/vivi.obj",
         image: "models/vivi/image-300.png",
         background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
         label: "Vivi2",
@@ -226,12 +226,12 @@ const Home = () => {
                         },
                     }}
                 />
+                <Cards
+                    models={MODELS}
+                    setSelectedModelKey={setSelectedModelKey}
+                    selectedModelKey={selectedModelKey}
+                />
             </Fade>
-            <Cards
-                models={MODELS}
-                setSelectedModelKey={setSelectedModelKey}
-                selectedModelKey={selectedModelKey}
-            />
         </Box>
     );
 };
