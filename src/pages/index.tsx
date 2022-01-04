@@ -14,7 +14,10 @@ const MODELS: Models = {
         mtl: "models/shadow/shadow.mtl",
         obj: "models/shadow/shadow.obj",
         image: "models/shadow/image-300.png",
-        background: "linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)",
+        background: "linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%)",
+        imageStyle: {
+            transform: "scale(1.3)",
+        },
         label: "Shadow",
     },
     vivi: {
@@ -22,21 +25,20 @@ const MODELS: Models = {
         obj: "models/vivi/vivi.obj",
         image: "models/vivi/image-300.png",
         background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
+        imageStyle: {
+            transform: "scale(1.3)",
+        },
         label: "Vivi",
     },
-    shadow2: {
-        mtl: "models/shadow/shadow.mtl",
-        obj: "models/shadow/shadow.obj",
-        image: "models/shadow/image-300.png",
-        background: "linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)",
-        label: "Shadow2",
-    },
-    vivi2: {
-        mtl: "models/vivi/vivi.mtl",
-        obj: "models/vivi/vivi.obj",
-        image: "models/vivi/image-300.png",
-        background: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
-        label: "Vivi2",
+    soldier: {
+        mtl: "models/soldier/soldier.mtl",
+        obj: "models/soldier/soldier.obj",
+        image: "models/soldier/image-300.png",
+        background: "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)",
+        imageStyle: {
+            transform: "scale(1.4) translateY(-5px) translateX(2px)",
+        },
+        label: "Soldier",
     },
 };
 
@@ -54,7 +56,7 @@ const UpdateCamera = () => {
             camera.updateProjectionMatrix();
         }
         if (!initialLoaded) {
-            scene.position.y = -2;
+            scene.position.y = -3;
             camera.manual = true;
         }
     });

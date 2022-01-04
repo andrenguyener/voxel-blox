@@ -126,12 +126,7 @@ export const Cards = ({
                                         }}
                                         overflow={"hidden"}
                                     >
-                                        <Image
-                                            src={model.image}
-                                            style={{
-                                                transform: "scale(1.3)",
-                                            }}
-                                        />
+                                        <Image src={model.image} style={model.imageStyle} />
                                     </Box>
                                     <Heading
                                         fontSize="12px"
