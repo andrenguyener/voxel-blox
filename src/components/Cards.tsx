@@ -1,7 +1,7 @@
 import React from "react";
 
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
-import { Box, HStack, Heading, Image, useColorModeValue, IconButton } from "@chakra-ui/react";
+import { HStack, Heading, Image, useColorModeValue, IconButton } from "@chakra-ui/react";
 import { AnimatePresence } from "framer-motion";
 
 import type { Models } from "../types";
@@ -96,22 +96,6 @@ export const Cards = ({
                                         cursor: "pointer",
                                         marginBottom: "10px",
                                     }}
-                                    custom={[index, selectedIndex]}
-                                    variants={{
-                                        enter: ([modelIndex, selectedModelIndex]: [
-                                            number,
-                                            number
-                                        ]) => {
-                                            return {
-                                                opacity:
-                                                    modelIndex === selectedModelIndex ? 1 : 0.25,
-                                            };
-                                        },
-                                    }}
-                                    animate="enter"
-                                    transition={{
-                                        opacity: { duration: 0.2 },
-                                    }}
                                     whileHover={{
                                         scale: 1.05,
                                     }}
@@ -120,14 +104,32 @@ export const Cards = ({
                                         setExpandOverlay(false);
                                     }}
                                 >
-                                    <Box
+                                    <MotionBox
                                         style={{
                                             backgroundImage: model.background,
                                         }}
                                         overflow={"hidden"}
+                                        custom={[index, selectedIndex]}
+                                        variants={{
+                                            enter: ([modelIndex, selectedModelIndex]: [
+                                                number,
+                                                number
+                                            ]) => {
+                                                return {
+                                                    opacity:
+                                                        modelIndex === selectedModelIndex
+                                                            ? 1
+                                                            : 0.25,
+                                                };
+                                            },
+                                        }}
+                                        animate="enter"
+                                        transition={{
+                                            opacity: { duration: 0.2 },
+                                        }}
                                     >
                                         <Image src={model.image} style={model.imageStyle} />
-                                    </Box>
+                                    </MotionBox>
                                     <Heading
                                         fontSize="12px"
                                         letterSpacing={"1px"}
