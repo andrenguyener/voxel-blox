@@ -2,6 +2,12 @@
 
 > 3D voxel models rendered with three.js
 
+<p align="center">
+  <a href="https://app.netlify.com/sites/flamboyant-shaw-eafa6d/deploys" target="_blank">
+    <img src="https://api.netlify.com/api/v1/badges/d310edac-93e5-48a3-92f5-001445756810/deploy-status" alt="Netlify Status" />
+  </a>
+</p>
+
 <!-- ![mockup1](./public/images/mockup2.png)
 ![mockup2](./public/images/mockup1.png) -->
 
