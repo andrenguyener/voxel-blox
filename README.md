@@ -16,7 +16,7 @@ Built with:
 -   [Framer Motion](https://www.framer.com/motion/)
 -   [Cryptify](https://github.com/mikechabot/cryptify)
 
-## Notes
+## Getting Started
 
 1. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
 
@@ -33,7 +33,7 @@ Built with:
 3. Start the development server - **Currently a decryption key is needed in order to view the models locally**
 
     ```bash
-     yarn dev
+    yarn dev
     ```
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser.
