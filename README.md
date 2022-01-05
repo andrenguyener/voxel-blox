@@ -1,6 +1,6 @@
 # Voxel-Blox
 
-> 3D models rendered with three.js
+> 3D voxel models rendered with three.js
 
 <!-- ![mockup1](./public/images/mockup2.png)
 ![mockup2](./public/images/mockup1.png) -->
