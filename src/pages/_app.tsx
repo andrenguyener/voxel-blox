@@ -21,6 +21,8 @@ const MyApp = ({ Component, pageProps, emotionCache = clientSideEmotionCache }: 
         <CacheProvider value={emotionCache}>
             <ChakraProvider theme={customTheme}>
                 <Head>
+                    <title>voxel-blox</title>
+                    <meta property="og:title" content="voxel-blox" key="voxel model viewer" />
                     <meta
                         name="viewport"
                         content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
