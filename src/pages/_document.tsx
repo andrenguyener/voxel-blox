@@ -7,7 +7,7 @@ import createEmotionServer from "@emotion/server/create-instance";
 
 import { config, createEmotionCache } from "../styles";
 
-const APP_NAME = "voxel-blocks";
+const APP_NAME = "voxel-blox";
 
 class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
@@ -50,7 +50,7 @@ class MyDocument extends Document {
                     <meta name="apple-mobile-web-app-title" content={APP_NAME} />
                     <meta name="format-detection" content="telephone=no" />
                     <meta name="mobile-web-app-capable" content="yes" />
-                    <meta name="theme-color" content="#FFFFFF" />
+                    <meta name="theme-color" content="#12121a" />
 
                     {/* add your own app-icon */}
                     {/* <link

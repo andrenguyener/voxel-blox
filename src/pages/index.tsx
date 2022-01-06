@@ -40,6 +40,17 @@ const MODELS: Models = {
         },
         label: "Soldier",
     },
+    moogle: {
+        mtl: "models/moogle/moogle.mtl",
+        obj: "models/moogle/moogle.obj",
+        image: "models/moogle/image-300.png",
+        background:
+            "linear-gradient( 109.6deg,  rgba(45,116,213,1) 11.2%, rgba(121,137,212,1) 91.2% )",
+        imageStyle: {
+            transform: "scale(1.3) translateY(10px)",
+        },
+        label: "Moogle",
+    },
 };
 
 const UpdateCamera = () => {

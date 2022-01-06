@@ -15,8 +15,8 @@
         "release": "standard-version",
         "push-release": "git push --follow-tags origin main",
         "prepare": "husky install",
-        "encrypt": "npx cryptify encrypt ./public/models/shadow/shadow.mtl ./public/models/shadow/shadow.obj ./public/models/vivi/vivi.mtl ./public/models/vivi/vivi.obj ./public/models/soldier/soldier.mtl ./public/models/soldier/soldier.obj -p $SECRET_KEY",
-        "decrypt": "npx cryptify decrypt ./public/models/shadow/shadow.mtl ./public/models/shadow/shadow.obj ./public/models/vivi/vivi.mtl ./public/models/vivi/vivi.obj ./public/models/soldier/soldier.mtl ./public/models/soldier/soldier.obj -p $SECRET_KEY"
+        "encrypt": "npx cryptify encrypt ./public/models/shadow/shadow.mtl ./public/models/shadow/shadow.obj ./public/models/vivi/vivi.mtl ./public/models/vivi/vivi.obj ./public/models/soldier/soldier.mtl ./public/models/soldier/soldier.obj ./public/models/moogle/moogle.mtl ./public/models/moogle/moogle.obj -p $SECRET_KEY",
+        "decrypt": "npx cryptify decrypt ./public/models/shadow/shadow.mtl ./public/models/shadow/shadow.obj ./public/models/vivi/vivi.mtl ./public/models/vivi/vivi.obj ./public/models/soldier/soldier.mtl ./public/models/soldier/soldier.obj ./public/models/moogle/moogle.mtl ./public/models/moogle/moogle.obj -p $SECRET_KEY"
     },
     "dependencies": {
         "@chakra-ui/icons": "^1.1.1",
