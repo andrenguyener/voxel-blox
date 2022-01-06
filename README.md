@@ -8,8 +8,8 @@
   </a>
 </p>
 
-<!-- ![mockup1](./public/images/mockup2.png)
-![mockup2](./public/images/mockup1.png) -->
+![mockup1](./public/mockup-1.png)
+![mockup2](./public/mockup-2.png)
 
 Built with:
 
