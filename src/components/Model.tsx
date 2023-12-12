@@ -75,6 +75,7 @@ export const Model = (props: Props) => {
     });
 
     return (
+        //  @ts-ignore:next-line
         <group ref={group} dispose={null}>
             <primitive name="Object_1" key={objPath} object={model} />
         </group>

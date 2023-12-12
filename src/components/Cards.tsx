@@ -39,6 +39,7 @@ export const Cards = ({
     const overlayBg = useColorModeValue("blackAlpha.900", "blackAlpha.800");
     return (
         <>
+            {/* @ts-ignore:next-line */}
             <AnimatePresence>
                 {expandOverlay && (
                     <MotionBox
@@ -56,6 +57,7 @@ export const Cards = ({
                     />
                 )}
             </AnimatePresence>
+            {/* @ts-ignore:next-line */}
             <MotionBox
                 w="100%"
                 p={4}
@@ -76,6 +78,7 @@ export const Cards = ({
                 }}
             >
                 <HStack spacing={2} justify="center" align={"center"} flexWrap={"wrap"}>
+                    {/* @ts-ignore:next-line */}
                     <AnimatePresence initial={false}>
                         {Object.values(models).map((model, index) => {
                             return (
